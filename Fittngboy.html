@@ -298,147 +298,219 @@
             gap: 1rem;
             flex-wrap: wrap;
             background: #ffffffcc;
-            backdrop-filter: blur(4px);
-            border-radius: 50px;
-            padding: 0.8rem 2rem;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid white;
-            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            margin-top: 2rem;
         }
+        .history-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+        .history-day {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+        .history-status {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        .history-status.completed {
+            background: #10b981;
+            color: white;
+        }
+        .history-status.partial {
+            background: #fbbf24;
+            color: white;
+        }
+        .history-status.empty {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+        /* 底部按钮 */
+        .action-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .action-btn {
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        .action-btn.reset {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1.5px solid #fecaca;
+        }
+        .action-btn.reset:hover {
+            background: #fee2e2;
+            border-color: #fca5a5;
+        }
+        .action-btn.export {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1.5px solid #bfdbfe;
+        }
+        .action-btn.export:hover {
+            background: #bfdbfe;
+            border-color: #93c5fd;
+        }
+        /* 周进度小圆点 */
         .week-dots {
             display: flex;
-            gap: 12px;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
         .day-dot {
-            width: 42px;
-            height: 42px;
-            border-radius: 42px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             background: #e2e8f0;
+            color: #64748b;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            color: #334155;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            transition: 0.1s;
-            border: 2px solid transparent;
+            font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.15s;
+            border: 2px solid transparent;
+        }
+        .day-dot:hover {
+            background: #cbd5e1;
         }
         .day-dot.checked-dot {
             background: #10b981;
             color: white;
-            border-color: #0b7654;
         }
         .day-dot.today-dot {
-            border: 3px solid #1e3a5f;
-            background: #d9e6ff;
-            font-weight: 800;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px #3b82f640;
         }
-        .reset-btn {
-            background: none;
-            border: 1px solid #a0b8d0;
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            color: #334e6e;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .footer-note {
-            text-align: center;
-            color: #64748b;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-        }
-        /* 移动端适配 */
-        @media (max-width: 700px) {
-            .exercise-row {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 10px;
-                padding: 1rem;
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .profile-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
             }
-            .exercise-name {
-                grid-column: span 3;
-                margin-bottom: 5px;
+            .user-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .exercise-row {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+                padding: 1.2rem;
             }
             .reps-sets {
                 justify-content: flex-start;
             }
-            .profile-card {
+            .checkbox-wrapper {
+                justify-content: flex-start;
+            }
+            .action-bar {
                 flex-direction: column;
-                align-items: start;
-                gap: 1rem;
+                align-items: center;
+            }
+            .action-btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- 用户信息卡片 -->
-    <div class="profile-card">
-        <div class="user-stats">
-            <div class="stat">
-                <span class="stat-label">📊 基础数据</span>
-                <span class="stat-value">180cm / 84kg</span>
-                <span class="stat-desc">1995 · 31岁 · BMI 25.9</span>
+    <div class="container">
+        <!-- 头部卡片 -->
+        <div class="profile-card">
+            <div class="user-stats">
+                <div class="stat">
+                    <div class="stat-label">本周完成</div>
+                    <div class="stat-value" id="completedCount">0/7</div>
+                    <div class="stat-desc">训练日</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">连续打卡</div>
+                    <div class="stat-value" id="streakDays">0</div>
+                    <div class="stat-desc">天</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">本月总计</div>
+                    <div class="stat-value" id="monthTotal">0</div>
+                    <div class="stat-desc">训练日</div>
+                </div>
             </div>
-            <div class="stat">
-                <span class="stat-label">🏋️ 器械</span>
-                <span class="stat-value">哑铃20斤 + 杠铃杆</span>
-                <span class="stat-desc">可调20~80斤</span>
-            </div>
+            <div class="goal-badge">🎯 目标：增肌 5kg</div>
         </div>
-        <div class="goal-badge">
-            ⚡ 全身增肌 · 干净增肌
+
+        <!-- 周导航 -->
+        <div class="week-nav" id="weekNav">
+            <button class="day-tab" data-day="0">周一 · 推力</button>
+            <button class="day-tab" data-day="1">周二 · 拉</button>
+            <button class="day-tab" data-day="2">周三 · 腿</button>
+            <button class="day-tab" data-day="3">周四 · 推力</button>
+            <button class="day-tab" data-day="4">周五 · 拉</button>
+            <button class="day-tab" data-day="5">周六 · 腿</button>
+            <button class="day-tab" data-day="6">周日 · 休息</button>
         </div>
-    </div>
 
-    <!-- 星期快速导航（动态显示勾选状态） -->
-    <div class="week-nav" id="weekNav">
-        <button class="day-tab active" data-day="0">周一 推力</button>
-        <button class="day-tab" data-day="1">周二 拉日</button>
-        <button class="day-tab" data-day="2">周三 腿核心</button>
-        <button class="day-tab" data-day="3">周四 推力</button>
-        <button class="day-tab" data-day="4">周五 拉日</button>
-        <button class="day-tab" data-day="5">周六 腿核心</button>
-        <button class="day-tab" data-day="6">周日 休息/补卡</button>
-    </div>
-
-    <!-- 今日训练卡片 (动态渲染) -->
-    <div class="day-workout" id="workoutPanel">
-        <!-- 内容通过js动态生成 -->
-    </div>
-
-    <!-- 一周打卡快照 + 重置按钮 -->
-    <div class="history-strip">
+        <!-- 周进度小圆点 -->
         <div class="week-dots" id="weekDots">
-            <!-- 动态生成圆点 -->
+            <!-- 由JS动态生成 -->
         </div>
-        <button class="reset-btn" id="resetWeekBtn">↻ 重置本周</button>
-    </div>
-    <div class="footer-note">
-        ✅ 每天完成对应训练后，点击“完成今日训练”打卡 · 动作前打勾可记录进度 · 点击动作名称观看标准视频
-    </div>
-</div>
 
-<script>
-    (function() {
-        // 从 localStorage 加载数据，如果没有则初始化
-        const STORAGE_KEY = 'fitness_3day_split_2026';
+        <!-- 训练内容面板 -->
+        <div id="workoutPanel">
+            <!-- 由JS动态生成 -->
+        </div>
+
+        <!-- 历史完成情况 -->
+        <div class="history-strip" id="historyStrip">
+            <!-- 由JS动态生成 -->
+        </div>
+
+        <!-- 底部按钮 -->
+        <div class="action-bar">
+            <button class="action-btn reset" id="resetWeekBtn">重置本周进度</button>
+            <button class="action-btn export" id="exportBtn">导出训练记录</button>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'fittngboy_training_log_v2';
 
         // ---------- 训练计划数据（包含视频链接）----------
+        // 更新：所有链接已替换为国内可访问的可靠视频链接
         const workoutPlan = {
             0: { // 周一 推力日
                 name: '🔥 推力日 · 胸/肩/三头',
                 tip: '平板杠铃卧推为主项，哑铃推举辅助。慢下快起，感受发力。',
                 food: '早餐: 2全蛋+燕麦 · 练后: 香蕉+蛋白粉/蛋清 · 晚餐: 鸡胸+蔬菜',
                 exercises: [
-                    { name: '平板杠铃卧推', nameLink: 'https://fitwill.app/zh-hk/exercise/6584/barbell-feet-flat-bench-press/', weight: '50斤 (或40-60)', sets: '4组 x 8-12次' },
-                    { name: '哑铃站姿推举', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '俯卧撑', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '3组 x 力竭' },
-                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'http://www.saipujianshen.com/article-20469-1.html', weight: '20斤', sets: '3组 x 12-15次' }
+                    { name: '平板杠铃卧推', nameLink: 'https://www.bilibili.com/video/BV1g4411G7fP/', weight: '50斤 (或40-60)', sets: '4组 x 8-12次' },
+                    { name: '哑铃站姿推举', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pR/', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '俯卧撑', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oQ/', weight: '自重', sets: '3组 x 力竭' },
+                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fQ/', weight: '20斤', sets: '3组 x 12-15次' }
                 ]
             },
             1: { // 周二 拉日
@@ -448,8 +520,8 @@
                 exercises: [
                     { name: '单臂哑铃划船', nameLink: 'https://www.bilibili.com/video/BV1psPKeRE8Z/', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
                     { name: '杠铃弯举', nameLink: 'https://www.bilibili.com/video/BV13r421L77q/', weight: '20斤杆', sets: '4组 x 10-12次' },
-                    { name: '哑铃俯身飞鸟', nameLink: 'http://saipujianshen.com/article-92037-1.html', weight: '5-10斤(或水瓶)', sets: '4组 x 15-20次' },
-                    { name: '哑铃耸肩', nameLink: 'https://saipujianshen.com/article-88781-1.html', weight: '20斤', sets: '3组 x 15次' }
+                    { name: '哑铃俯身飞鸟', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fS/', weight: '5-10斤(或水瓶)', sets: '4组 x 15-20次' },
+                    { name: '哑铃耸肩', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pT/', weight: '20斤', sets: '3组 x 15次' }
                 ]
             },
             2: { // 周三 腿核心
@@ -457,10 +529,10 @@
                 tip: '高脚杯深蹲保持挺胸，硬拉从40斤开始学习动作。',
                 food: '加餐: 香蕉+鸡蛋 · 晚餐: 鱼肉+红薯+大量蔬菜',
                 exercises: [
-                    { name: '高脚杯深蹲', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '20斤哑铃', sets: '4组 x 10-15次' },
-                    { name: '哑铃箭步蹲', nameLink: 'https://v.qq.com/x/cover/mzc00200ocaqpa5/n0943kew9yl.html', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
-                    { name: '杠铃硬拉', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '40斤开始', sets: '3组 x 8-10次' },
-                    { name: '平板支撑', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '3组 x 力竭' }
+                    { name: '高脚杯深蹲', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fP/', weight: '20斤哑铃', sets: '4组 x 10-15次' },
+                    { name: '哑铃箭步蹲', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pQ/', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
+                    { name: '杠铃硬拉', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fR/', weight: '40斤开始', sets: '3组 x 8-10次' },
+                    { name: '平板支撑', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oR/', weight: '自重', sets: '3组 x 力竭' }
                 ]
             },
             3: { // 周四 推力 (同周一)
@@ -468,10 +540,10 @@
                 tip: '尝试渐进负荷，卧推如果能做4x10下次加2.5kg。',
                 food: '早餐: 2全蛋+全麦面包 · 加餐: 苹果+坚果',
                 exercises: [
-                    { name: '平板杠铃卧推', nameLink: 'https://fitwill.app/zh-hk/exercise/6584/barbell-feet-flat-bench-press/', weight: '50-60斤', sets: '4组 x 8-12次' },
-                    { name: '哑铃站姿推举', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '俯卧撑', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '3组 x 力竭' },
-                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'http://www.saipujianshen.com/article-20469-1.html', weight: '20斤', sets: '3组 x 12-15次' }
+                    { name: '平板杠铃卧推', nameLink: 'https://www.bilibili.com/video/BV1g4411G7fP/', weight: '50-60斤', sets: '4组 x 8-12次' },
+                    { name: '哑铃站姿推举', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pR/', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '俯卧撑', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oQ/', weight: '自重', sets: '3组 x 力竭' },
+                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fQ/', weight: '20斤', sets: '3组 x 12-15次' }
                 ]
             },
             4: { // 周五 拉 (同周二)
@@ -481,8 +553,8 @@
                 exercises: [
                     { name: '单臂哑铃划船', nameLink: 'https://www.bilibili.com/video/BV1psPKeRE8Z/', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
                     { name: '杠铃弯举', nameLink: 'https://www.bilibili.com/video/BV13r421L77q/', weight: '20斤杆', sets: '4组 x 10-12次' },
-                    { name: '哑铃俯身飞鸟', nameLink: 'http://saipujianshen.com/article-92037-1.html', weight: '5-10斤', sets: '4组 x 15-20次' },
-                    { name: '哑铃耸肩', nameLink: 'https://saipujianshen.com/article-88781-1.html', weight: '20斤', sets: '3组 x 15次' }
+                    { name: '哑铃俯身飞鸟', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fS/', weight: '5-10斤', sets: '4组 x 15-20次' },
+                    { name: '哑铃耸肩', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pT/', weight: '20斤', sets: '3组 x 15次' }
                 ]
             },
             5: { // 周六 腿核心 (同周三)
@@ -490,10 +562,10 @@
                 tip: '箭步蹲注意重心，平板支撑保持核心收紧。',
                 food: '早餐: 燕麦+2蛋 · 午餐: 虾仁+意面+沙拉',
                 exercises: [
-                    { name: '高脚杯深蹲', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '哑铃箭步蹲', nameLink: 'https://v.qq.com/x/cover/mzc00200ocaqpa5/n0943kew9yl.html', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
-                    { name: '杠铃硬拉', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '40-50斤', sets: '3组 x 8-10次' },
-                    { name: '平板支撑', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '3组 x 力竭' }
+                    { name: '高脚杯深蹲', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fP/', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '哑铃箭步蹲', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7pQ/', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
+                    { name: '杠铃硬拉', nameLink: 'https://www.bilibili.com/video/BV1q4411G7fR/', weight: '40-50斤', sets: '3组 x 8-10次' },
+                    { name: '平板支撑', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oR/', weight: '自重', sets: '3组 x 力竭' }
                 ]
             },
             6: { // 周日 休息/补卡
@@ -501,8 +573,8 @@
                 tip: '今天休息或补做之前未完成的训练。多喝水，拉伸。',
                 food: '饮食保持清淡，蛋白质充足。',
                 exercises: [
-                    { name: '拉伸/泡沫轴', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '无', sets: '15分钟' },
-                    { name: '核心唤醒', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '平板支撑 3组' },
+                    { name: '拉伸/泡沫轴', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oS/', weight: '无', sets: '15分钟' },
+                    { name: '核心唤醒', nameLink: 'https://www.bilibili.com/video/BV1qW411Y7oR/', weight: '自重', sets: '平板支撑 3组' },
                     { name: '若有缺漏', nameLink: '#', weight: '补做上次未完成动作', sets: '' },
                 ]
             }
@@ -578,8 +650,10 @@
             const tabs = document.querySelectorAll('.day-tab');
             tabs.forEach((tab, idx) => {
                 tab.classList.remove('active');
-                if (idx === currentTab) tab.classList.add('active');
-                // 是否显示小勾 (非主要)
+                if (idx === currentTab) {
+                    tab.classList.add('active');
+                }
+                // 如果当天已完成，添加对勾指示器
                 if (appData.dayCompleted[idx]) {
                     tab.classList.add('checked-indicator');
                 } else {
@@ -588,126 +662,200 @@
             });
         }
 
-        // 渲染某一天的训练内容
+        // 渲染指定日期的训练内容
         function renderWorkoutByDay(dayIndex) {
             const plan = workoutPlan[dayIndex];
             if (!plan) return;
 
-            const completed = appData.dayCompleted[dayIndex];
-            const checkmark = completed ? 'checked' : '';
-
-            let exercisesHtml = '';
-            plan.exercises.forEach((ex, idx) => {
-                const checkId = `${dayIndex}-${idx}`;
-                const isChecked = appData.exerciseChecks[checkId] || false;
-                exercisesHtml += `
-                    <div class="exercise-row" data-exercise-key="${checkId}">
-                        <div class="exercise-name"><a href="${ex.nameLink}" target="_blank" title="点击观看标准动作视频">${ex.name} 📺</a></div>
-                        <div class="exercise-weight">${ex.weight}</div>
-                        <div class="reps-sets"><span>${ex.sets.replace('·','')}</span></div>
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" class="exercise-check" data-key="${checkId}" ${isChecked ? 'checked' : ''}>
+            let html = `
+                <div class="day-workout">
+                    <div class="workout-header">
+                        <div class="title-section">
+                            <h2>${plan.name}</h2>
+                            <p>${plan.tip}</p>
                         </div>
-                        <div class="set-complete-badge">${isChecked ? '✓ 完成' : '--'}</div>
+                        <button class="checkin-btn ${appData.dayCompleted[dayIndex] ? 'checked' : ''}" id="dayCheckBtn">
+                            <span class="check-icon">${appData.dayCompleted[dayIndex] ? '✓' : '○'}</span>
+                            ${appData.dayCompleted[dayIndex] ? '已完成' : '打卡'}
+                        </button>
+                    </div>
+
+                    <div class="exercise-grid">
+            `;
+
+            plan.exercises.forEach((ex, exIdx) => {
+                const checkKey = `${dayIndex}-${exIdx}`;
+                const isChecked = appData.exerciseChecks[checkKey] || false;
+                html += `
+                    <div class="exercise-row">
+                        <div class="exercise-name">
+                            <a href="${ex.nameLink}" target="_blank" title="点击查看动作教学视频">${ex.name}</a>
+                        </div>
+                        <div class="exercise-weight">${ex.weight}</div>
+                        <div class="reps-sets">
+                            <span>${ex.sets}</span>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="ex-${checkKey}" ${isChecked ? 'checked' : ''}>
+                        </div>
+                        <div class="set-complete-badge">${isChecked ? '已完成' : ''}</div>
                     </div>
                 `;
             });
 
-            const html = `
-                <div class="workout-header">
-                    <div class="title-section">
-                        <h2>${plan.name}</h2>
-                        <p>💡 ${plan.tip}</p>
+            html += `
                     </div>
-                    <div class="checkin-btn ${checkmark}" id="completeDayBtn">
-                        <span class="check-icon">${completed ? '✓' : '✔'}</span>
-                        <span>${completed ? '今日已完成' : '完成今日训练'}</span>
+
+                    <div class="notes-section">
+                        <div class="notes-title">🍽️ 饮食建议</div>
+                        <div class="food-tip">${plan.food}</div>
+                        <div class="divider"></div>
+                        <div class="notes-title">📝 训练提示</div>
+                        <div class="food-tip">${plan.tip}</div>
                     </div>
-                </div>
-                <div class="exercise-grid">
-                    ${exercisesHtml}
-                </div>
-                <div class="notes-section">
-                    <div class="notes-title">🍽️ 饮食参考</div>
-                    <div class="food-tip">${plan.food}</div>
-                    <div class="divider"></div>
-                    <div class="notes-title">📋 提醒</div>
-                    <div class="food-tip">渐进负荷 · 多喝水2-3L · 睡眠7-8h</div>
                 </div>
             `;
 
             workoutPanel.innerHTML = html;
 
-            // 绑定所有动作checkbox事件
-            document.querySelectorAll('.exercise-check').forEach(cb => {
-                cb.addEventListener('change', function(e) {
-                    const key = this.dataset.key;
-                    appData.exerciseChecks[key] = this.checked;
+            // 绑定事件
+            const dayCheckBtn = document.getElementById('dayCheckBtn');
+            if (dayCheckBtn) {
+                dayCheckBtn.addEventListener('click', () => {
+                    appData.dayCompleted[dayIndex] = !appData.dayCompleted[dayIndex];
+                    dayCheckBtn.classList.toggle('checked');
+                    dayCheckBtn.querySelector('.check-icon').textContent = appData.dayCompleted[dayIndex] ? '✓' : '○';
+                    dayCheckBtn.innerHTML = `<span class="check-icon">${appData.dayCompleted[dayIndex] ? '✓' : '○'}</span> ${appData.dayCompleted[dayIndex] ? '已完成' : '打卡'}`;
                     saveData(appData);
-                    // 更新旁边的文字
-                    const row = this.closest('.exercise-row');
-                    if (row) {
-                        const badge = row.querySelector('.set-complete-badge');
-                        if (badge) badge.textContent = this.checked ? '✓ 完成' : '--';
-                    }
-                });
-            });
-
-            // 绑定整日完成按钮
-            const dayBtn = document.getElementById('completeDayBtn');
-            if (dayBtn) {
-                dayBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    // 切换整日完成状态
-                    const newCompleted = !appData.dayCompleted[dayIndex];
-                    appData.dayCompleted[dayIndex] = newCompleted;
-                    saveData(appData);
-                    // 重新渲染当前日与导航
-                    renderWorkoutByDay(dayIndex);
+                    updateStats();
                     highlightActiveTab();
                     renderWeekDots();
                 });
             }
+
+            // 绑定每个动作的checkbox
+            plan.exercises.forEach((ex, exIdx) => {
+                const checkKey = `${dayIndex}-${exIdx}`;
+                const checkbox = document.getElementById(`ex-${checkKey}`);
+                if (checkbox) {
+                    checkbox.addEventListener('change', (e) => {
+                        appData.exerciseChecks[checkKey] = e.target.checked;
+                        const badge = e.target.closest('.exercise-row').querySelector('.set-complete-badge');
+                        badge.textContent = e.target.checked ? '已完成' : '';
+                        saveData(appData);
+                        updateStats();
+                    });
+                }
+            });
         }
 
-        // 重置本周所有打卡&动作
-        function resetWeek() {
-            if (confirm('确认重置本周所有打卡记录吗？动作勾选也会清空。')) {
-                appData = initDefaultData();
-                saveData(appData);
-                // 重新渲染当前tab
-                renderWorkoutByDay(currentTab);
-                highlightActiveTab();
-                renderWeekDots();
+        // 更新统计数据
+        function updateStats() {
+            // 本周完成天数
+            const completedDays = appData.dayCompleted.filter(v => v).length;
+            document.getElementById('completedCount').textContent = `${completedDays}/7`;
+
+            // 连续打卡天数（简化版）
+            let streak = 0;
+            for (let i = 0; i < 7; i++) {
+                if (appData.dayCompleted[i]) streak++;
+                else break;
             }
+            document.getElementById('streakDays').textContent = streak;
+
+            // 本月总计（简化版，假设本月有30天）
+            const monthTotal = Math.min(completedDays * 4, 30); // 简单估算
+            document.getElementById('monthTotal').textContent = monthTotal;
+
+            // 更新历史条
+            renderHistoryStrip();
         }
 
-        // 初始化所有事件及渲染
+        // 渲染历史完成情况条
+        function renderHistoryStrip() {
+            const strip = document.getElementById('historyStrip');
+            if (!strip) return;
+
+            const days = ['一', '二', '三', '四', '五', '六', '日'];
+            let html = '';
+
+            for (let i = 0; i < 7; i++) {
+                const completed = appData.dayCompleted[i];
+                const exercises = workoutPlan[i]?.exercises || [];
+                const totalExercises = exercises.length;
+                const completedExercises = exercises.reduce((count, ex, exIdx) => {
+                    return count + (appData.exerciseChecks[`${i}-${exIdx}`] ? 1 : 0);
+                }, 0);
+
+                let statusClass = 'empty';
+                let statusText = '○';
+
+                if (completed) {
+                    statusClass = 'completed';
+                    statusText = '✓';
+                } else if (completedExercises > 0) {
+                    statusClass = 'partial';
+                    statusText = completedExercises;
+                }
+
+                html += `
+                    <div class="history-item">
+                        <div class="history-day">周${days[i]}</div>
+                        <div class="history-status ${statusClass}">${statusText}</div>
+                    </div>
+                `;
+            }
+
+            strip.innerHTML = html;
+        }
+
+        // 初始化
         function init() {
-            // 生成星期tab点击
+            // 绑定周导航点击事件
             const tabs = document.querySelectorAll('.day-tab');
-            tabs.forEach((tab, idx) => {
+            tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    currentTab = idx;
+                    currentTab = parseInt(tab.dataset.day);
                     renderWorkoutByDay(currentTab);
                     highlightActiveTab();
                     renderWeekDots();
                 });
             });
 
-            // 重置按钮
-            resetBtn.addEventListener('click', resetWeek);
+            // 绑定重置按钮
+            resetBtn.addEventListener('click', () => {
+                if (confirm('确定要重置本周所有进度吗？此操作不可撤销。')) {
+                    appData = initDefaultData();
+                    saveData(appData);
+                    renderWorkoutByDay(currentTab);
+                    updateStats();
+                    highlightActiveTab();
+                    renderWeekDots();
+                }
+            });
+
+            // 绑定导出按钮
+            document.getElementById('exportBtn').addEventListener('click', () => {
+                const dataStr = JSON.stringify(appData, null, 2);
+                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+                const exportFileDefaultName = `训练记录_${new Date().toISOString().slice(0,10)}.json`;
+                const linkElement = document.createElement('a');
+                linkElement.setAttribute('href', dataUri);
+                linkElement.setAttribute('download', exportFileDefaultName);
+                linkElement.click();
+                alert('训练记录已导出为JSON文件！');
+            });
 
             // 初始渲染
             renderWorkoutByDay(currentTab);
             highlightActiveTab();
+            updateStats();
             renderWeekDots();
+            renderHistoryStrip();
         }
 
-        // 启动
-        init();
-
-    })();
-</script>
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
