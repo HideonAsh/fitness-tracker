@@ -387,17 +387,17 @@
     (function() {
         const STORAGE_KEY = 'her_fitness_split_2026';
 
-        // ---------- 她的专属训练计划 (减脂塑形，更新版：使用政府体育部门/专业机构的官方视频) ----------
+        // ---------- 她的专属训练计划 (减脂塑形，Fitwill专业动作库版) ----------
         const workoutPlan = {
             0: { // 周一：有氧+核心
                 name: '🧘‍♀️ 有氧打底 · 核心激活',
                 tip: '跳绳前后一定要热身拉伸。卷腹注意脖子放松，感受腹部。',
                 food: '早餐: 豆浆+鸡蛋+玉米 · 午餐: 鸡胸+糙米+蔬菜 · 加餐: 小番茄',
                 exercises: [
-                    { name: '跳绳 (慢速)', nameLink: 'https://www.xmgh.org/zgxt/tzgg/202102/t20210222_220220.htm', weight: '无绳/有绳', sets: '5组 x 1分钟 (间歇30秒)' },
-                    { name: '平板支撑', nameLink: 'http://tyj.shanxi.gov.cn/bsfw/tzjs/202210/t20221010_7241042.shtml', weight: '自重', sets: '4组 x 30-45秒' },
-                    { name: '卷腹', nameLink: 'http://tyj.shanxi.gov.cn/bsfw/tzjs/202210/t20221010_7241042.shtml', weight: '自重', sets: '4组 x 15次' },
-                    { name: '俄罗斯转体', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '徒手/2.5kg哑铃', sets: '3组 x 20次' }
+                    { name: '跳绳 (慢速)', nameLink: 'https://fitwill.app/zh-hans/exercise/6600/dumbbell-goblet-squat/', weight: '无绳/有绳', sets: '5组 x 1分钟 (间歇30秒)' },
+                    { name: '平板支撑', nameLink: 'https://fitwill.app/zh-hans/exercise/6587/plank/', weight: '自重', sets: '4组 x 30-45秒' },
+                    { name: '卷腹', nameLink: 'https://fitwill.app/zh-hans/exercise/6586/crunch/', weight: '自重', sets: '4组 x 15次' },
+                    { name: '俄罗斯转体', nameLink: 'https://fitwill.app/zh-hans/exercise/6589/russian-twist/', weight: '徒手/2.5kg哑铃', sets: '3组 x 20次' }
                 ]
             },
             1: { // 周二：臀腿+哑铃
@@ -405,10 +405,10 @@
                 tip: '深蹲膝盖对准脚尖，臀桥用力夹紧臀部。可用20斤哑铃负重。',
                 food: '早餐: 燕麦+牛奶 · 午餐: 牛肉+意面+彩椒 · 晚餐: 鱼+蔬菜',
                 exercises: [
-                    { name: '高脚杯深蹲', nameLink: 'http://tyj.shanxi.gov.cn/bsfw/tzjs/202210/t20221010_7241042.shtml', weight: '10-20斤哑铃', sets: '4组 x 12次' },
-                    { name: '哑铃臀桥', nameLink: 'http://tyj.shanxi.gov.cn/bsfw/tzjs/202210/t20221010_7241042.shtml', weight: '15-20斤', sets: '4组 x 15次' },
-                    { name: '箭步蹲 (原地)', nameLink: 'http://www.81.cn/zggfs/2017-09/12/content_7752664_2.htm', weight: '10斤哑铃', sets: '3组 x 10条腿' },
-                    { name: '跪姿后抬腿', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重+弹力带(可选)', sets: '3组 x 20次/侧' }
+                    { name: '高脚杯深蹲', nameLink: 'https://fitwill.app/zh-hans/exercise/6600/dumbbell-goblet-squat/', weight: '10-20斤哑铃', sets: '4组 x 12次' },
+                    { name: '哑铃臀桥', nameLink: 'https://fitwill.app/zh-hans/exercise/6597/dumbbell-glute-bridge/', weight: '15-20斤', sets: '4组 x 15次' },
+                    { name: '箭步蹲 (原地)', nameLink: 'https://fitwill.app/zh-hans/exercise/6601/dumbbell-lunge/', weight: '10斤哑铃', sets: '3组 x 10条腿' },
+                    { name: '跪姿后抬腿', nameLink: 'https://fitwill.app/zh-hans/exercise/6605/kickback/', weight: '自重+弹力带(可选)', sets: '3组 x 20次/侧' }
                 ]
             },
             2: { // 周三：瑜伽+拉伸
@@ -416,10 +416,10 @@
                 tip: '用瑜伽棒滚压大腿、小腿和背部。每个体式保持5个呼吸。',
                 food: '多吃蔬菜水果，适量粗粮，保持水分。',
                 exercises: [
-                    { name: '瑜伽棒滚压大腿前后', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '瑜伽棒', sets: '每侧2分钟' },
-                    { name: '下犬式 / 猫牛式', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '5-8轮呼吸' },
-                    { name: '蝴蝶式/青蛙趴', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '保持2分钟' },
-                    { name: '脊柱扭转', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '每侧1分钟' }
+                    { name: '瑜伽棒滚压大腿前后', nameLink: 'https://fitwill.app/zh-hans/exercise/6671/hamstring-stretch/', weight: '瑜伽棒', sets: '每侧2分钟' },
+                    { name: '下犬式 / 猫牛式', nameLink: 'https://fitwill.app/zh-hans/exercise/6666/downward-dog/', weight: '自重', sets: '5-8轮呼吸' },
+                    { name: '蝴蝶式/青蛙趴', nameLink: 'https://fitwill.app/zh-hans/exercise/6668/butterfly-stretch/', weight: '自重', sets: '保持2分钟' },
+                    { name: '脊柱扭转', nameLink: 'https://fitwill.app/zh-hans/exercise/6669/spinal-twist/', weight: '自重', sets: '每侧1分钟' }
                 ]
             },
             3: { // 周四：间歇跳绳
@@ -427,10 +427,10 @@
                 tip: '跳绳100次+开合跳30秒交替，燃脂高效。注意落地轻柔。',
                 food: '练前一根香蕉，练后补充蛋白+绿叶菜。',
                 exercises: [
-                    { name: '跳绳100次', nameLink: 'https://www.xmgh.org/zgxt/tzgg/202102/t20210222_220220.htm', weight: '无绳/有绳', sets: '5组 (组间休息40秒)' },
-                    { name: '开合跳', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '5组 x 30秒' },
-                    { name: '高抬腿', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '4组 x 20秒' },
-                    { name: '跳绳后拉伸', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '瑜伽棒/垫上', sets: '5-10分钟' }
+                    { name: '跳绳100次', nameLink: 'https://fitwill.app/zh-hans/exercise/6591/jumping-jack/', weight: '无绳/有绳', sets: '5组 (组间休息40秒)' },
+                    { name: '开合跳', nameLink: 'https://fitwill.app/zh-hans/exercise/6591/jumping-jack/', weight: '自重', sets: '5组 x 30秒' },
+                    { name: '高抬腿', nameLink: 'https://fitwill.app/zh-hans/exercise/6592/high-knee/', weight: '自重', sets: '4组 x 20秒' },
+                    { name: '跳绳后拉伸', nameLink: 'https://fitwill.app/zh-hans/exercise/6670/standing-quad-stretch/', weight: '瑜伽棒/垫上', sets: '5-10分钟' }
                 ]
             },
             4: { // 周五：上肢塑形（轻哑铃）
@@ -438,10 +438,10 @@
                 tip: '小重量多组数，改善拜拜肉。哑铃可用5-10斤（可卸片）。',
                 food: '早餐: 全麦面包+鸡蛋 · 午餐: 虾仁+藜麦+西兰花',
                 exercises: [
-                    { name: '哑铃推举', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-shoulder-exercises', weight: '5-10斤', sets: '4组 x 12次' },
-                    { name: '哑铃侧平举', nameLink: 'http://tyj.zj.gov.cn/art/2020/10/15/art_1347240_59016010.html', weight: '3-5斤', sets: '4组 x 15次' },
-                    { name: '俯身哑铃划船', nameLink: 'http://tyj.zj.gov.cn/art/2020/10/15/art_1347240_59016010.html', weight: '10斤', sets: '4组 x 12次' },
-                    { name: '哑铃弯举', nameLink: 'https://cando.cditv.cn/show-3095-1454068-1.html', weight: '5斤', sets: '3组 x 12次' }
+                    { name: '哑铃推举', nameLink: 'https://fitwill.app/zh-hans/exercise/6609/dumbbell-standing-shoulder-press/', weight: '5-10斤', sets: '4组 x 12次' },
+                    { name: '哑铃侧平举', nameLink: 'https://fitwill.app/zh-hans/exercise/6612/dumbbell-lateral-raise/', weight: '3-5斤', sets: '4组 x 15次' },
+                    { name: '俯身哑铃划船', nameLink: 'https://fitwill.app/zh-hans/exercise/6603/dumbbell-one-arm-row/', weight: '10斤', sets: '4组 x 12次' },
+                    { name: '哑铃弯举', nameLink: 'https://fitwill.app/zh-hans/exercise/6607/dumbbell-curl/', weight: '5斤', sets: '3组 x 12次' }
                 ]
             },
             5: { // 周六：全身燃脂混合
@@ -449,10 +449,10 @@
                 tip: '组合动作：深蹲跳(无哑铃)或简化版，注意安全。',
                 food: '早餐: 紫薯+酸奶 · 午餐: 瘦肉+粗粮+蔬菜 · 加餐: 黄瓜',
                 exercises: [
-                    { name: '深蹲跳 (或原地深蹲)', nameLink: 'http://www.81.cn/zggfs/2017-09/12/content_7752664_2.htm', weight: '自重', sets: '3组 x 10次' },
-                    { name: '登山跑', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '4组 x 30秒' },
-                    { name: '哑铃硬拉', nameLink: 'http://tyj.shanxi.gov.cn/bsfw/tzjs/202210/t20221010_7241042.shtml', weight: '20斤', sets: '3组 x 12次' },
-                    { name: '波比跳 (简化)', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '3组 x 8次' }
+                    { name: '深蹲跳 (或原地深蹲)', nameLink: 'https://fitwill.app/zh-hans/exercise/6599/dumbbell-squat/', weight: '自重', sets: '3组 x 10次' },
+                    { name: '登山跑', nameLink: 'https://fitwill.app/zh-hans/exercise/6593/mountain-climber/', weight: '自重', sets: '4组 x 30秒' },
+                    { name: '哑铃硬拉', nameLink: 'https://fitwill.app/zh-hans/exercise/6598/dumbbell-deadlift/', weight: '20斤', sets: '3组 x 12次' },
+                    { name: '波比跳 (简化)', nameLink: 'https://fitwill.app/zh-hans/exercise/6594/burpee/', weight: '自重', sets: '3组 x 8次' }
                 ]
             },
             6: { // 周日：主动恢复/补卡
@@ -460,9 +460,9 @@
                 tip: '今天可以散步或做简单瑜伽，也可补做之前未完成的训练。',
                 food: '多喝水，晚餐清淡，补充维生素。',
                 exercises: [
-                    { name: '泡沫轴全身放松', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '瑜伽棒', sets: '10分钟' },
-                    { name: '猫式伸展/婴儿式', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '自重', sets: '5分钟' },
-                    { name: '腿部拉伸', nameLink: 'https://www.fzfu.com/ysxy/info/1006/2744.htm', weight: '瑜伽垫', sets: '每侧2分钟' }
+                    { name: '泡沫轴全身放松', nameLink: 'https://fitwill.app/zh-hans/exercise/6671/hamstring-stretch/', weight: '瑜伽棒', sets: '10分钟' },
+                    { name: '猫式伸展/婴儿式', nameLink: 'https://fitwill.app/zh-hans/exercise/6666/downward-dog/', weight: '自重', sets: '5分钟' },
+                    { name: '腿部拉伸', nameLink: 'https://fitwill.app/zh-hans/exercise/6670/standing-quad-stretch/', weight: '瑜伽垫', sets: '每侧2分钟' }
                 ]
             }
         };
