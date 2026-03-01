@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>她的蜕变 · 微胖塑形计划 (双人打卡)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        }
+        body {
+            background: linear-gradient(145deg, #f8f0f0 0%, #f1e9f5 100%);
+            min-height: 100vh;
+            padding: 1.5rem 1rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+        /* 头部卡片 - 温柔色系 */
+        .profile-card {
+            background: rgba(255, 245, 250, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 35px -10px rgba(180, 100, 140, 0.2);
+            border: 1px solid #ffffffc0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .user-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9b6b7c;
+        }
+        .stat-value {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #3f2e38;
+            line-height: 1.2;
+        }
+        .stat-desc {
+            font-size: 0.9rem;
+            color: #7a5b68;
+            margin-top: 4px;
+        }
+        .goal-badge {
+            background: #ffd9e6;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            color: #a1426d;
+            font-weight: 600;
+            border: 1px solid #ffb0cb;
+            box-shadow: 0 6px 12px #f5c0d0;
+        }
+        /* 周导航 */
+        .week-nav {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+            background: rgba(255, 240, 245, 0.7);
+            padding: 0.8rem 1.4rem;
+            border-radius: 60px;
+            backdrop-filter: blur(8px);
+            border: 1px solid #ffeef4;
+            justify-content: center;
+        }
+        .day-tab {
+            background: transparent;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #6e4b5a;
+            cursor: pointer;
+            transition: 0.15s;
+            border: 1px solid transparent;
+        }
+        .day-tab:hover {
+            background: #ffe2ed;
+            border-color: #feadc6;
+        }
+        .day-tab.active {
+            background: #c25b7c;
+            color: white;
+            border-color: #9f4261;
+            box-shadow: 0 8px 14px -6px #c25b7cb0;
+        }
+        .day-tab.checked-indicator {
+            position: relative;
+        }
+        .day-tab.checked-indicator::after {
+            content: "✓";
+            background: #10b981;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 20px;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        /* 训练卡片 */
+        .day-workout {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 42px;
+            padding: 2rem 2rem 2.2rem;
+            box-shadow: 0 30px 45px -20px #c28bb0;
+            border: 1px solid #ffffff;
+            margin-bottom: 2rem;
+        }
+        .workout-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ffe6f0;
+            padding-bottom: 1.2rem;
+            margin-bottom: 1.8rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .title-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #4a2c3b;
+            letter-spacing: -0.01em;
+        }
+        .title-section p {
+            color: #8b6d7b;
+            font-weight: 400;
+            font-size: 1rem;
+        }
+        .checkin-btn {
+            background: #ffebf2;
+            border: 2px solid #feb4cb;
+            color: #912f55;
+            padding: 0.75rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+        .checkin-btn.checked {
+            background: #10b981;
+            border-color: #0a7f5a;
+            color: white;
+        }
+        .check-icon {
+            background: #c25b7c30;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* 动作网格 */
+        .exercise-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .exercise-row {
+            display: grid;
+            grid-template-columns: 2.2fr 0.8fr 1.5fr 0.6fr 0.6fr;
+            align-items: center;
+            background: #ffffffd0;
+            padding: 1rem 1.8rem;
+            border-radius: 32px;
+            border: 1px solid #ffdeec;
+        }
+        .exercise-name {
+            font-weight: 600;
+            color: #38222e;
+        }
+        .exercise-name a {
+            color: #a1426d;
+            text-decoration: none;
+            border-bottom: 1px dashed #a1426d;
+        }
+        .exercise-name a:hover {
+            color: #6a2b47;
+            border-bottom: 1px solid #6a2b47;
+        }
+        .exercise-weight {
+            color: #ac6f89;
+            font-weight: 500;
+        }
+        .reps-sets {
+            display: flex;
+            gap: 1rem;
+            color: #a05977;
+        }
+        .reps-sets span {
+            background: #ffecf2;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+        }
+        .checkbox-wrapper input {
+            width: 24px;
+            height: 24px;
+            accent-color: #c25b7c;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        .set-complete-badge {
+            color: #c25b7c;
+            font-weight: 500;
+        }
+        /* 饮食&备注 */
+        .notes-section {
+            margin-top: 2rem;
+            background: #fff2f8;
+            border-radius: 30px;
+            padding: 1.5rem 2rem;
+            border: 1px solid #ffd6e6;
+        }
+        .notes-title {
+            font-weight: 600;
+            color: #a53f65;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .food-tip {
+            color: #573f4a;
+            font-size: 1rem;
+            padding-left: 0.3rem;
+        }
+        .divider {
+            margin: 1rem 0;
+            border-top: 1px dashed #fec7db;
+        }
+        /* 历史圆点 */
+        .history-strip {
+            background: #ffecf2e0;
+            backdrop-filter: blur(4px);
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid #ffffff;
+        }
+        .week-dots {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .day-dot {
+            width: 44px;
+            height: 44px;
+            border-radius: 44px;
+            background: #ffe2ed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #6b4153;
+            border: 2px solid transparent;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+        .day-dot.checked-dot {
+            background: #10b981;
+            color: white;
+            border-color: #0a7654;
+        }
+        .day-dot.today-dot {
+            border: 3px solid #a53f65;
+            background: #ffd2e2;
+            font-weight: 800;
+        }
+        .reset-btn {
+            background: none;
+            border: 1.5px solid #c9799b;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            color: #832f52;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .reset-btn:hover {
+            background: #ffe3f0;
+        }
+        .footer-note {
+            text-align: center;
+            color: #a5637e;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+        }
+        /* 移动响应式 */
+        @media (max-width: 700px) {
+            .exercise-row {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 8px;
+                padding: 1rem;
+            }
+            .exercise-name { grid-column: span 3; }
+            .reps-sets { justify-content: flex-start; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 她的信息卡片 -->
+    <div class="profile-card">
+        <div class="user-stats">
+            <div class="stat">
+                <span class="stat-label">🌸 她的数据</span>
+                <span class="stat-value">160cm / 70kg</span>
+                <span class="stat-desc">1995 · 31岁 · BMI 27.3</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">🧘 器械</span>
+                <span class="stat-value">跳绳 · 瑜伽垫 · 哑铃</span>
+                <span class="stat-desc">可共用20斤哑铃/瑜伽棒</span>
+            </div>
+        </div>
+        <div class="goal-badge">
+            ✨ 减脂塑形 · 紧致线条
+        </div>
+    </div>
+
+    <!-- 星期导航（动态绑定） -->
+    <div class="week-nav" id="weekNav">
+        <button class="day-tab active" data-day="0">周一 有氧+核心</button>
+        <button class="day-tab" data-day="1">周二 臀腿+哑铃</button>
+        <button class="day-tab" data-day="2">周三 瑜伽+拉伸</button>
+        <button class="day-tab" data-day="3">周四 间歇跳绳</button>
+        <button class="day-tab" data-day="4">周五 上肢塑形</button>
+        <button class="day-tab" data-day="5">周六 全身燃脂</button>
+        <button class="day-tab" data-day="6">周日 主动恢复</button>
+    </div>
+
+    <!-- 今日训练卡片（动态渲染） -->
+    <div class="day-workout" id="workoutPanel"></div>
+
+    <!-- 一周打卡圆点 + 重置 -->
+    <div class="history-strip">
+        <div class="week-dots" id="weekDots"></div>
+        <button class="reset-btn" id="resetWeekBtn">↻ 重置本周</button>
+    </div>
+    <div class="footer-note">
+        ✅ 每天完成训练后点击上方按钮打卡 · 勾选动作记录进度 · 点击动作名称观看标准视频
+    </div>
+</div>
+
+<script>
+    (function() {
+        const STORAGE_KEY = 'her_fitness_split_2026';
+
+        // ---------- 她的专属训练计划 (减脂塑形，包含视频链接) ----------
+        const workoutPlan = {
+            0: { // 周一：有氧+核心
+                name: '🧘‍♀️ 有氧打底 · 核心激活',
+                tip: '跳绳前后一定要热身拉伸。卷腹注意脖子放松，感受腹部。',
+                food: '早餐: 豆浆+鸡蛋+玉米 · 午餐: 鸡胸+糙米+蔬菜 · 加餐: 小番茄',
+                exercises: [
+                    { name: '跳绳 (慢速)', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '无绳/有绳', sets: '5组 x 1分钟 (间歇30秒)' },
+                    { name: '平板支撑', nameLink: 'https://www.mayoclinic.org/zh-hans/healthy-lifestyle/fitness/multimedia/modified-pushup/vid-20084674', weight: '自重', sets: '4组 x 30-45秒' },
+                    { name: '卷腹', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '4组 x 15次' },
+                    { name: '俄罗斯转体', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '徒手/2.5kg哑铃', sets: '3组 x 20次' }
+                ]
+            },
+            1: { // 周二：臀腿+哑铃
+                name: '🍑 臀腿力量 · 哑铃塑形',
+                tip: '深蹲膝盖对准脚尖，臀桥用力夹紧臀部。可用20斤哑铃负重。',
+                food: '早餐: 燕麦+牛奶 · 午餐: 牛肉+意面+彩椒 · 晚餐: 鱼+蔬菜',
+                exercises: [
+                    { name: '高脚杯深蹲', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '10-20斤哑铃', sets: '4组 x 12次' },
+                    { name: '哑铃臀桥', nameLink: 'https://v.qq.com/x/cover/mzc00200ocaqpa5/n0943kew9yl.html', weight: '15-20斤', sets: '4组 x 15次' },
+                    { name: '箭步蹲 (原地)', nameLink: 'https://v.qq.com/x/cover/mzc00200ocaqpa5/n0943kew9yl.html', weight: '10斤哑铃', sets: '3组 x 10条腿' },
+                    { name: '跪姿后抬腿', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重+弹力带(可选)', sets: '3组 x 20次/侧' }
+                ]
+            },
+            2: { // 周三：瑜伽+拉伸
+                name: '🌿 柔韧与平衡 · 筋膜放松',
+                tip: '用瑜伽棒滚压大腿、小腿和背部。每个体式保持5个呼吸。',
+                food: '多吃蔬菜水果，适量粗粮，保持水分。',
+                exercises: [
+                    { name: '瑜伽棒滚压大腿前后', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '瑜伽棒', sets: '每侧2分钟' },
+                    { name: '下犬式 / 猫牛式', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '5-8轮呼吸' },
+                    { name: '蝴蝶式/青蛙趴', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '保持2分钟' },
+                    { name: '脊柱扭转', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '每侧1分钟' }
+                ]
+            },
+            3: { // 周四：间歇跳绳
+                name: '🔥 高强度间歇 · 跳绳燃脂',
+                tip: '跳绳100次+开合跳30秒交替，燃脂高效。注意落地轻柔。',
+                food: '练前一根香蕉，练后补充蛋白+绿叶菜。',
+                exercises: [
+                    { name: '跳绳100次', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '无绳/有绳', sets: '5组 (组间休息40秒)' },
+                    { name: '开合跳', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '5组 x 30秒' },
+                    { name: '高抬腿', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '4组 x 20秒' },
+                    { name: '跳绳后拉伸', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '瑜伽棒/垫上', sets: '5-10分钟' }
+                ]
+            },
+            4: { // 周五：上肢塑形（轻哑铃）
+                name: '💪 紧致手臂/肩膀/背部',
+                tip: '小重量多组数，改善拜拜肉。哑铃可用5-10斤（可卸片）。',
+                food: '早餐: 全麦面包+鸡蛋 · 午餐: 虾仁+藜麦+西兰花',
+                exercises: [
+                    { name: '哑铃推举', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '5-10斤', sets: '4组 x 12次' },
+                    { name: '哑铃侧平举', nameLink: 'http://saipujianshen.com/article-92037-1.html', weight: '3-5斤', sets: '4组 x 15次' },
+                    { name: '俯身哑铃划船', nameLink: 'https://www.bilibili.com/video/BV1psPKeRE8Z/', weight: '10斤', sets: '4组 x 12次' },
+                    { name: '哑铃弯举', nameLink: 'https://www.bilibili.com/video/BV13r421L77q/', weight: '5斤', sets: '3组 x 12次' }
+                ]
+            },
+            5: { // 周六：全身燃脂混合
+                name: '⚡ 全身燃脂 · 复合动作',
+                tip: '组合动作：深蹲跳(无哑铃)或简化版，注意安全。',
+                food: '早餐: 紫薯+酸奶 · 午餐: 瘦肉+粗粮+蔬菜 · 加餐: 黄瓜',
+                exercises: [
+                    { name: '深蹲跳 (或原地深蹲)', nameLink: 'https://v.qq.com/x/cover/mzc00200ocaqpa5/n0943kew9yl.html', weight: '自重', sets: '3组 x 10次' },
+                    { name: '登山跑', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '4组 x 30秒' },
+                    { name: '哑铃硬拉', nameLink: 'https://www.worldgymtaiwan.com/blog/workouts/weight-training/the-best-lower-body-strength-training-exercises', weight: '20斤', sets: '3组 x 12次' },
+                    { name: '波比跳 (简化)', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '3组 x 8次' }
+                ]
+            },
+            6: { // 周日：主动恢复/补卡
+                name: '💤 恢复日 · 轻柔拉伸',
+                tip: '今天可以散步或做简单瑜伽，也可补做之前未完成的训练。',
+                food: '多喝水，晚餐清淡，补充维生素。',
+                exercises: [
+                    { name: '泡沫轴全身放松', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '瑜伽棒', sets: '10分钟' },
+                    { name: '猫式伸展/婴儿式', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '自重', sets: '5分钟' },
+                    { name: '腿部拉伸', nameLink: 'https://v.qq.com/x/cover/mzc001005pdfm0o/g3053fy1v7j.html', weight: '瑜伽垫', sets: '每侧2分钟' }
+                ]
+            }
+        };
+
+        // 初始化数据
+        function initDefaultData() {
+            const data = {
+                dayCompleted: [false, false, false, false, false, false, false],
+                exerciseChecks: {}
+            };
+            for (let d = 0; d <= 6; d++) {
+                const exs = workoutPlan[d]?.exercises || [];
+                for (let eIdx = 0; eIdx < exs.length; eIdx++) {
+                    data.exerciseChecks[`${d}-${eIdx}`] = false;
+                }
+            }
+            return data;
+        }
+
+        function loadData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                try {
+                    return JSON.parse(stored);
+                } catch { return initDefaultData(); }
+            }
+            return initDefaultData();
+        }
+
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+
+        let appData = loadData();
+        // 当前星期索引: 周一0 ... 周日6
+        let currentTab = (new Date().getDay() === 0 ? 6 : new Date().getDay() - 1);
+
+        // DOM
+        const weekNavEl = document.getElementById('weekNav');
+        const workoutPanel = document.getElementById('workoutPanel');
+        const weekDotsEl = document.getElementById('weekDots');
+        const resetBtn = document.getElementById('resetWeekBtn');
+
+        // 渲染顶部圆点
+        function renderWeekDots() {
+            const dots = weekDotsEl;
+            dots.innerHTML = '';
+            const days = ['一', '二', '三', '四', '五', '六', '日'];
+            for (let i = 0; i < 7; i++) {
+                const dot = document.createElement('div');
+                dot.className = `day-dot ${appData.dayCompleted[i] ? 'checked-dot' : ''} ${currentTab === i ? 'today-dot' : ''}`;
+                dot.textContent = days[i];
+                dot.dataset.day = i;
+                dot.addEventListener('click', () => {
+                    currentTab = i;
+                    renderWorkoutByDay(currentTab);
+                    highlightActiveTab();
+                    renderWeekDots();
+                });
+                dots.appendChild(dot);
+            }
+        }
+
+        // 高亮tab
+        function highlightActiveTab() {
+            const tabs = document.querySelectorAll('.day-tab');
+            tabs.forEach((tab, idx) => {
+                tab.classList.remove('active', 'checked-indicator');
+                if (idx === currentTab) tab.classList.add('active');
+                if (appData.dayCompleted[idx]) tab.classList.add('checked-indicator');
+            });
+        }
+
+        // 渲染某天训练
+        function renderWorkoutByDay(dayIndex) {
+            const plan = workoutPlan[dayIndex];
+            if (!plan) return;
+
+            const completed = appData.dayCompleted[dayIndex];
+            const checkClass = completed ? 'checked' : '';
+
+            let exercisesHtml = '';
+            plan.exercises.forEach((ex, idx) => {
+                const key = `${dayIndex}-${idx}`;
+                const isChecked = appData.exerciseChecks[key] || false;
+                exercisesHtml += `
+                    <div class="exercise-row" data-key="${key}">
+                        <div class="exercise-name"><a href="${ex.nameLink}" target="_blank" title="点击观看标准动作视频">${ex.name} 📺</a></div>
+                        <div class="exercise-weight">${ex.weight}</div>
+                        <div class="reps-sets"><span>${ex.sets}</span></div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" class="exercise-check" data-key="${key}" ${isChecked ? 'checked' : ''}>
+                        </div>
+                        <div class="set-complete-badge">${isChecked ? '✓' : '○'}</div>
+                    </div>
+                `;
+            });
+
+            const html = `
+                <div class="workout-header">
+                    <div class="title-section">
+                        <h2>${plan.name}</h2>
+                        <p>💡 ${plan.tip}</p>
+                    </div>
+                    <div class="checkin-btn ${checkClass}" id="completeDayBtn">
+                        <span class="check-icon">${completed ? '✓' : '✔'}</span>
+                        <span>${completed ? '今日已完成' : '完成今日训练'}</span>
+                    </div>
+                </div>
+                <div class="exercise-grid">
+                    ${exercisesHtml}
+                </div>
+                <div class="notes-section">
+                    <div class="notes-title">🥗 饮食参考</div>
+                    <div class="food-tip">${plan.food}</div>
+                    <div class="divider"></div>
+                    <div class="notes-title">📌 小贴士</div>
+                    <div class="food-tip">每天饮水2L · 经期可调整为拉伸/休息</div>
+                </div>
+            `;
+
+            workoutPanel.innerHTML = html;
+
+            // 动作checkbox事件
+            document.querySelectorAll('.exercise-check').forEach(cb => {
+                cb.addEventListener('change', function(e) {
+                    const key = this.dataset.key;
+                    appData.exerciseChecks[key] = this.checked;
+                    saveData(appData);
+                    const row = this.closest('.exercise-row');
+                    if (row) {
+                        const badge = row.querySelector('.set-complete-badge');
+                        if (badge) badge.textContent = this.checked ? '✓' : '○';
+                    }
+                });
+            });
+
+            // 整日打卡按钮
+            const dayBtn = document.getElementById('completeDayBtn');
+            if (dayBtn) {
+                dayBtn.addEventListener('click', function() {
+                    appData.dayCompleted[dayIndex] = !appData.dayCompleted[dayIndex];
+                    saveData(appData);
+                    renderWorkoutByDay(dayIndex);
+                    highlightActiveTab();
+                    renderWeekDots();
+                });
+            }
+        }
+
+        // 重置本周
+        function resetWeek() {
+            if (confirm('确定重置本周所有打卡和动作记录吗？')) {
+                appData = initDefaultData();
+                saveData(appData);
+                renderWorkoutByDay(currentTab);
+                highlightActiveTab();
+                renderWeekDots();
+            }
+        }
+
+        // 初始化
+        function init() {
+            const tabs = document.querySelectorAll('.day-tab');
+            tabs.forEach((tab, idx) => {
+                tab.addEventListener('click', () => {
+                    currentTab = idx;
+                    renderWorkoutByDay(currentTab);
+                    highlightActiveTab();
+                    renderWeekDots();
+                });
+            });
+
+            resetBtn.addEventListener('click', resetWeek);
+
+            renderWorkoutByDay(currentTab);
+            highlightActiveTab();
+            renderWeekDots();
+        }
+
+        init();
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健身训练打卡系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .card.boy {
+            border-top: 5px solid #3b82f6;
+        }
+        .card.girl {
+            border-top: 5px solid #ec4899;
+        }
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            background: #3b82f6;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+        .btn.girl {
+            background: #ec4899;
+        }
+        .btn.girl:hover {
+            background: #db2777;
+        }
+        .features {
+            margin-top: 50px;
+            color: white;
+        }
+        .features h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .feature {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏋️‍♂️ 健身训练打卡系统</h1>
+            <p class="subtitle">三分化训练 · 增肌减脂 · 科学计划</p>
+        </div>
+        
+        <div class="cards">
+            <a href="Fittngboy.html" class="card boy">
+                <h2>🔥 增肌训练日志</h2>
+                <p>适合增肌期，三分化训练计划<br>记录重量、组数、次数<br>包含动作视频指导</p>
+                <span class="btn">开始增肌训练 →</span>
+            </a>
+            
+            <a href="Fittinggirl.html" class="card girl">
+                <h2>💪 减脂训练日志</h2>
+                <p>适合减脂期，三分化训练计划<br>记录有氧、力量训练<br>包含饮食建议</p>
+                <span class="btn girl">开始减脂训练 →</span>
+            </a>
+        </div>
+        
+        <div class="features">
+            <h3>✨ 功能特点</h3>
+            <div class="feature-list">
+                <div class="feature">📱 手机友好</div>
+                <div class="feature">💾 本地存储</div>
+                <div class="feature">🎯 动作视频</div>
+                <div class="feature">📊 进度追踪</div>
+                <div class="feature">🍽️ 饮食建议</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
