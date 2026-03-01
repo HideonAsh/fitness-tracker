@@ -419,7 +419,7 @@
         <button class="reset-btn" id="resetWeekBtn">↻ 重置本周</button>
     </div>
     <div class="footer-note">
-        ✅ 每天完成对应训练后，点击“完成今日训练”打卡 · 动作前打勾可记录进度 · 点击动作名称观看标准视频
+        ✅ 每天完成对应训练后，点击“完成今日训练”打卡 · 动作前打勾可记录进度 · 点击动作名称观看标准动作动画
     </div>
 </div>
 
@@ -428,17 +428,17 @@
         // 从 localStorage 加载数据，如果没有则初始化
         const STORAGE_KEY = 'fitness_3day_split_2026';
 
-        // ---------- 训练计划数据（Fitwill专业动作库版）----------
+        // ---------- 训练计划数据（MuscleWiki精准动作库版，所有链接直接可用）----------
         const workoutPlan = {
             0: { // 周一 推力日
                 name: '🔥 推力日 · 胸/肩/三头',
                 tip: '平板杠铃卧推为主项，哑铃推举辅助。慢下快起，感受发力。',
                 food: '早餐: 2全蛋+燕麦 · 练后: 香蕉+蛋白粉/蛋清 · 晚餐: 鸡胸+蔬菜',
                 exercises: [
-                    { name: '平板杠铃卧推', nameLink: 'https://fitwill.app/zh-hans/exercise/6584/barbell-feet-flat-bench-press/', weight: '50斤 (或40-60)', sets: '4组 x 8-12次' },
-                    { name: '哑铃站姿推举', nameLink: 'https://fitwill.app/zh-hans/exercise/6609/dumbbell-standing-shoulder-press/', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '俯卧撑', nameLink: 'https://fitwill.app/zh-hans/exercise/6585/push-up/', weight: '自重', sets: '3组 x 力竭' },
-                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://fitwill.app/zh-hans/exercise/6602/dumbbell-standing-triceps-extension/', weight: '20斤', sets: '3组 x 12-15次' }
+                    { name: '平板杠铃卧推', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-bench-press', weight: '50斤 (或40-60)', sets: '4组 x 8-12次' },
+                    { name: '哑铃站姿推举', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-shoulder-press', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '俯卧撑', nameLink: 'https://musclewiki.cn/zh-hans/exercises/push-up', weight: '自重', sets: '3组 x 力竭' },
+                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-triceps-extension', weight: '20斤', sets: '3组 x 12-15次' }
                 ]
             },
             1: { // 周二 拉日
@@ -446,10 +446,10 @@
                 tip: '单臂划船顶峰收缩，杠铃弯举不要晃，俯身飞鸟用小重量。',
                 food: '早餐: 牛奶+燕麦 · 午餐: 牛肉+米饭+蔬菜 · 睡前: 牛奶',
                 exercises: [
-                    { name: '单臂哑铃划船', nameLink: 'https://fitwill.app/zh-hans/exercise/6603/dumbbell-one-arm-row/', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
-                    { name: '杠铃弯举', nameLink: 'https://fitwill.app/zh-hans/exercise/6606/barbell-curl/', weight: '20斤杆', sets: '4组 x 10-12次' },
-                    { name: '哑铃俯身飞鸟', nameLink: 'https://fitwill.app/zh-hans/exercise/6611/dumbbell-bent-over-rear-delt-fly/', weight: '5-10斤(或水瓶)', sets: '4组 x 15-20次' },
-                    { name: '哑铃耸肩', nameLink: 'https://fitwill.app/zh-hans/exercise/6610/dumbbell-shrug/', weight: '20斤', sets: '3组 x 15次' }
+                    { name: '单臂哑铃划船', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-row', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
+                    { name: '杠铃弯举', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-curl', weight: '20斤杆', sets: '4组 x 10-12次' },
+                    { name: '哑铃俯身飞鸟', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-rear-delt-fly', weight: '5-10斤(或水瓶)', sets: '4组 x 15-20次' },
+                    { name: '哑铃耸肩', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-shrug', weight: '20斤', sets: '3组 x 15次' }
                 ]
             },
             2: { // 周三 腿核心
@@ -457,10 +457,10 @@
                 tip: '高脚杯深蹲保持挺胸，硬拉从40斤开始学习动作。',
                 food: '加餐: 香蕉+鸡蛋 · 晚餐: 鱼肉+红薯+大量蔬菜',
                 exercises: [
-                    { name: '高脚杯深蹲', nameLink: 'https://fitwill.app/zh-hans/exercise/6600/dumbbell-goblet-squat/', weight: '20斤哑铃', sets: '4组 x 10-15次' },
-                    { name: '哑铃箭步蹲', nameLink: 'https://fitwill.app/zh-hans/exercise/6601/dumbbell-lunge/', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
-                    { name: '杠铃硬拉', nameLink: 'https://fitwill.app/zh-hans/exercise/6588/barbell-conventional-deadlift/', weight: '40斤开始', sets: '3组 x 8-10次' },
-                    { name: '平板支撑', nameLink: 'https://fitwill.app/zh-hans/exercise/6587/plank/', weight: '自重', sets: '3组 x 力竭' }
+                    { name: '高脚杯深蹲', nameLink: 'https://musclewiki.cn/zh-hans/exercises/goblet-squat', weight: '20斤哑铃', sets: '4组 x 10-15次' },
+                    { name: '哑铃箭步蹲', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-lunge', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
+                    { name: '杠铃硬拉', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-deadlift', weight: '40斤开始', sets: '3组 x 8-10次' },
+                    { name: '平板支撑', nameLink: 'https://musclewiki.cn/zh-hans/exercises/plank', weight: '自重', sets: '3组 x 力竭' }
                 ]
             },
             3: { // 周四 推力 (同周一)
@@ -468,10 +468,10 @@
                 tip: '尝试渐进负荷，卧推如果能做4x10下次加2.5kg。',
                 food: '早餐: 2全蛋+全麦面包 · 加餐: 苹果+坚果',
                 exercises: [
-                    { name: '平板杠铃卧推', nameLink: 'https://fitwill.app/zh-hans/exercise/6584/barbell-feet-flat-bench-press/', weight: '50-60斤', sets: '4组 x 8-12次' },
-                    { name: '哑铃站姿推举', nameLink: 'https://fitwill.app/zh-hans/exercise/6609/dumbbell-standing-shoulder-press/', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '俯卧撑', nameLink: 'https://fitwill.app/zh-hans/exercise/6585/push-up/', weight: '自重', sets: '3组 x 力竭' },
-                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://fitwill.app/zh-hans/exercise/6602/dumbbell-standing-triceps-extension/', weight: '20斤', sets: '3组 x 12-15次' }
+                    { name: '平板杠铃卧推', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-bench-press', weight: '50-60斤', sets: '4组 x 8-12次' },
+                    { name: '哑铃站姿推举', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-shoulder-press', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '俯卧撑', nameLink: 'https://musclewiki.cn/zh-hans/exercises/push-up', weight: '自重', sets: '3组 x 力竭' },
+                    { name: '哑铃三头肌颈后臂屈伸', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-triceps-extension', weight: '20斤', sets: '3组 x 12-15次' }
                 ]
             },
             4: { // 周五 拉 (同周二)
@@ -479,10 +479,10 @@
                 tip: '杠铃弯举可轻重交替，后束常被忽略，记得做飞鸟。',
                 food: '练前: 一片全麦面包 · 晚餐: 瘦猪肉+糙米',
                 exercises: [
-                    { name: '单臂哑铃划船', nameLink: 'https://fitwill.app/zh-hans/exercise/6603/dumbbell-one-arm-row/', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
-                    { name: '杠铃弯举', nameLink: 'https://fitwill.app/zh-hans/exercise/6606/barbell-curl/', weight: '20斤杆', sets: '4组 x 10-12次' },
-                    { name: '哑铃俯身飞鸟', nameLink: 'https://fitwill.app/zh-hans/exercise/6611/dumbbell-bent-over-rear-delt-fly/', weight: '5-10斤', sets: '4组 x 15-20次' },
-                    { name: '哑铃耸肩', nameLink: 'https://fitwill.app/zh-hans/exercise/6610/dumbbell-shrug/', weight: '20斤', sets: '3组 x 15次' }
+                    { name: '单臂哑铃划船', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-row', weight: '20斤', sets: '4组 x 10-12次(每侧)' },
+                    { name: '杠铃弯举', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-curl', weight: '20斤杆', sets: '4组 x 10-12次' },
+                    { name: '哑铃俯身飞鸟', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-rear-delt-fly', weight: '5-10斤', sets: '4组 x 15-20次' },
+                    { name: '哑铃耸肩', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-shrug', weight: '20斤', sets: '3组 x 15次' }
                 ]
             },
             5: { // 周六 腿核心 (同周三)
@@ -490,10 +490,10 @@
                 tip: '箭步蹲注意重心，平板支撑保持核心收紧。',
                 food: '早餐: 燕麦+2蛋 · 午餐: 虾仁+意面+沙拉',
                 exercises: [
-                    { name: '高脚杯深蹲', nameLink: 'https://fitwill.app/zh-hans/exercise/6600/dumbbell-goblet-squat/', weight: '20斤', sets: '4组 x 10-15次' },
-                    { name: '哑铃箭步蹲', nameLink: 'https://fitwill.app/zh-hans/exercise/6601/dumbbell-lunge/', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
-                    { name: '杠铃硬拉', nameLink: 'https://fitwill.app/zh-hans/exercise/6588/barbell-conventional-deadlift/', weight: '40-50斤', sets: '3组 x 8-10次' },
-                    { name: '平板支撑', nameLink: 'https://fitwill.app/zh-hans/exercise/6587/plank/', weight: '自重', sets: '3组 x 力竭' }
+                    { name: '高脚杯深蹲', nameLink: 'https://musclewiki.cn/zh-hans/exercises/goblet-squat', weight: '20斤', sets: '4组 x 10-15次' },
+                    { name: '哑铃箭步蹲', nameLink: 'https://musclewiki.cn/zh-hans/exercises/dumbbell-lunge', weight: '20斤', sets: '3组 x 10-12次(每条腿)' },
+                    { name: '杠铃硬拉', nameLink: 'https://musclewiki.cn/zh-hans/exercises/barbell-deadlift', weight: '40-50斤', sets: '3组 x 8-10次' },
+                    { name: '平板支撑', nameLink: 'https://musclewiki.cn/zh-hans/exercises/plank', weight: '自重', sets: '3组 x 力竭' }
                 ]
             },
             6: { // 周日 休息/补卡
@@ -501,9 +501,9 @@
                 tip: '今天休息或补做之前未完成的训练。多喝水，拉伸。',
                 food: '饮食保持清淡，蛋白质充足。',
                 exercises: [
-                    { name: '拉伸/泡沫轴', nameLink: 'https://fitwill.app/zh-hans/exercise/6670/standing-quad-stretch/', weight: '无', sets: '15分钟' },
-                    { name: '核心唤醒', nameLink: 'https://fitwill.app/zh-hans/exercise/6587/plank/', weight: '自重', sets: '平板支撑 3组' },
-                    { name: '若有缺漏', nameLink: '#', weight: '补做上次未完成动作', sets: '' },
+                    { name: '拉伸/泡沫轴', nameLink: 'https://musclewiki.cn/zh-hans/exercises/hamstring-stretch', weight: '无', sets: '15分钟' },
+                    { name: '核心唤醒', nameLink: 'https://musclewiki.cn/zh-hans/exercises/plank', weight: '自重', sets: '平板支撑 3组' },
+                    { name: '若有缺漏', nameLink: 'https://musclewiki.cn/zh-hans/', weight: '补做上次未完成动作', sets: '' },
                 ]
             }
         };
@@ -602,7 +602,7 @@
                 const isChecked = appData.exerciseChecks[checkId] || false;
                 exercisesHtml += `
                     <div class="exercise-row" data-exercise-key="${checkId}">
-                        <div class="exercise-name"><a href="${ex.nameLink}" target="_blank" title="点击观看标准动作视频">${ex.name} 📺</a></div>
+                        <div class="exercise-name"><a href="${ex.nameLink}" target="_blank" title="点击观看标准动作动画">${ex.name} 📺</a></div>
                         <div class="exercise-weight">${ex.weight}</div>
                         <div class="reps-sets"><span>${ex.sets.replace('·','')}</span></div>
                         <div class="checkbox-wrapper">
